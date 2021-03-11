@@ -1,20 +1,19 @@
 from datetime import datetime
 
 from orders.coffee import Coffee
-from orders.receipts import Receipt
+from orders.receipt import Receipt
 from orders.sellers import Seller
 
 
 class Customer:
-    def __init__(self, name: str, seller: Seller):
+    def __init__(self, name: str):
         self.name = name
-        self.seller = seller
 
     def order_coffee(self, coffee: Coffee):
         ordered_date = datetime(2021, 3, 9, 10, 23, 43)
+        seller = Seller("Ami")
         return Receipt(
-            customer_name=self.name,
-            seller_name=self.seller.name,
+            seller_name=seller.name,
             product=coffee.name,
             price=3000,
             amount=1,

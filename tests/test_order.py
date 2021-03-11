@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from orders.receipts import Receipt
+from orders.receipt import Receipt
 from orders.sellers import Seller
 from orders.customers import Customer
 from orders.coffee import Coffee
