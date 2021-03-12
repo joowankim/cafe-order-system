@@ -1,4 +1,3 @@
-from datetime import datetime
 from unittest import TestCase
 
 from orders.coffee import Coffee
@@ -12,17 +11,14 @@ class TestSeller(TestCase):
     def test_create_receipt(self):
         seller = Seller("Jack")
         customer = Customer("Yuni")
-        coffee = Coffee("Americano")
+        coffee = Coffee("Americano", 3000)
 
         order = Order(
             customer_info=customer.name,
-            seller_info=seller.name,
             product=coffee.name,
             amount=1,
             price=3000
         )
-
-        receipt = seller.create_receipt(order=order)
 
         expected = Receipt(
             customer_name=order.customer_info,
@@ -32,4 +28,5 @@ class TestSeller(TestCase):
             amount=order.amount,
             ordered_date=order.ordered)
 
+        receipt = seller.create_receipt(order=order)
         self.assertEqual(expected, receipt)

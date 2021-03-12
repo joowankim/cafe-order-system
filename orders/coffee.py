@@ -1,4 +1,4 @@
 class Coffee:
-    def __init__(self, name):
-        self.price = 3000
+    def __init__(self, name: str, price: int):
         self.name = name
+        self.price = price

@@ -6,10 +6,10 @@ from orders.receipt import Receipt
 
 
 class ReceiptMachine:
-    def get_receipt(self, order: Order):
+    def get_receipt(self, seller_name: str, order: Order) -> Receipt:
         return Receipt(
             customer_name=order.customer_info,
-            seller_name=order.seller_info,
+            seller_name=seller_name,
             product=order.product,
             price=order.price,
             amount=order.amount,
