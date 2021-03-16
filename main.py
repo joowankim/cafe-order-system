@@ -1,16 +1,29 @@
-# This is a sample Python script.
+from orders.coffee import Coffee
+from orders.customers import Customer
+from orders.menus import Menu
+from orders.receiptMachine import ReceiptMachine
+from orders.sellers import Seller
 
-# Press ⇧F10 to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # initialize menu
+    americano = Coffee(name="Americano", price=3000)
+    espresso = Coffee(name="Espresso", price=2000)
+    latte = Coffee(name="Latte", price=4000)
+    menu = Menu(products={
+        americano.name: americano,
+        espresso.name: espresso,
+        latte.name: latte
+    })
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # initialize customer & seller
+    customer = Customer(name="John", menu=menu)
+    seller = Seller(name="Ami")
+
+    # create order
+    order = customer.create_order(coffee_name=latte.name, amount=2)
+    receipt = seller.create_receipt(order=order)
+
+    # print receipt
+    from pprint import pprint
+    pprint(receipt)
+
