@@ -1,7 +1,6 @@
 from orders.coffee import Coffee
 from orders.customers import Customer
 from orders.menus import Menu
-from orders.receiptMachine import ReceiptMachine
 from orders.sellers import Seller
 
 if __name__ == '__main__':
