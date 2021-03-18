@@ -1,6 +1,8 @@
+from dataclasses import dataclass
 from datetime import datetime
 
 
+@dataclass(eq=True)
 class Order(object):
     def __init__(self, customer_info: str, product: str, amount: int, price: int):
         self.customer_info = customer_info,
@@ -8,10 +10,3 @@ class Order(object):
         self.product = product,
         self.amount = amount,
         self.price = price
-
-    def __eq__(self, other):
-        return (self.customer_info == other.customer_info and
-                self.ordered == other.ordered and
-                self.product == other.product and
-                self.amount == other.amount and
-                self.price == other.price)

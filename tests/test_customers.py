@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from orders.coffee import Coffee
+from orders.VO.coffee import Coffee
 from orders.customers import Customer
 from orders.menus import Menu
-from orders.order import Order
+from orders.VO.order import Order
 
 
 class TestCustomer(TestCase):

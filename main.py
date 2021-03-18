@@ -1,4 +1,4 @@
-from orders.coffee import Coffee
+from orders.VO.coffee import Coffee
 from orders.customers import Customer
 from orders.menus import Menu
 from orders.sellers import Seller

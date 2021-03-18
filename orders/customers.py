@@ -1,5 +1,5 @@
 from orders.menus import Menu
-from orders.order import Order
+from orders.VO.order import Order
 
 
 class Customer:

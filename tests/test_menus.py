@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from orders.coffee import Coffee
+from orders.VO.coffee import Coffee
 from orders.menus import Menu
 
 

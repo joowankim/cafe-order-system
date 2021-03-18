@@ -1,4 +1,4 @@
-from orders.coffee import Coffee
+from orders.VO.coffee import Coffee
 
 
 class Menu:

@@ -1,5 +1,5 @@
-from orders.order import Order
-from orders.receipt import Receipt
+from orders.VO.order import Order
+from orders.VO.receipt import Receipt
 from orders.receiptMachine import ReceiptMachine
 
 

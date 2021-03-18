@@ -1,16 +1,28 @@
 from unittest import TestCase
 
-from orders.coffee import Coffee
+from orders.VO.coffee import Coffee
 from orders.customers import Customer
-from orders.order import Order
-from orders.receipt import Receipt
+from orders.VO.order import Order
+from orders.VO.receipt import Receipt
+from orders.menus import Menu
 from orders.sellers import Seller
 
 
 class TestSeller(TestCase):
     def test_create_receipt(self):
+        americano = Coffee("Americano", 3000)
+        espresso = Coffee("Espresso", 2000)
+        latte = Coffee("Latte", 4000)
+        products = {
+            americano.name: americano,
+            espresso.name: espresso,
+            latte.name: latte
+        }
+
+        menu = Menu(products)
+
         seller = Seller("Jack")
-        customer = Customer("Yuni")
+        customer = Customer("Yuni", menu)
         coffee = Coffee("Americano", 3000)
 
         order = Order(
@@ -22,7 +34,7 @@ class TestSeller(TestCase):
 
         expected = Receipt(
             customer_name=order.customer_info,
-            seller_name=order.seller_info,
+            seller_name=seller.name,
             product=order.product,
             price=order.price,
             amount=order.amount,
