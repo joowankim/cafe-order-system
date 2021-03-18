@@ -1,15 +1,11 @@
-from collections import OrderedDict
 from dataclasses import dataclass
 
 
-@dataclass(eq=True)
+@dataclass
 class Receipt:
-    def __init__(self, customer_name: str, seller_name: str, product: str,
-                 price: int, amount: int, ordered_date: str):
-        self.customer_name = customer_name
-        self.seller_name = seller_name
-        self.product = product
-        self.price = price
-        self.amount = amount
-        self.ordered_date = ordered_date
-    pass
+    customer_name: str
+    seller_name: str
+    product: str
+    price: int
+    amount: int
+    ordered_date: str
