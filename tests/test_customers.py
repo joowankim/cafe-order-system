@@ -1,3 +1,4 @@
+from datetime import datetime
 from unittest import TestCase
 
 from orders.VO.coffee import Coffee
@@ -23,7 +24,8 @@ class TestCustomer(TestCase):
             customer_info=customer.name,
             product=americano.name,
             amount=2,
-            price=americano.price
+            price=americano.price,
+            ordered=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
         result = customer.create_order(americano.name, 2)
         self.assertEqual(expected, result)

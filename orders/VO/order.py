@@ -3,8 +3,9 @@ from datetime import datetime
 
 
 @dataclass
-class Order(object):
+class Order:
     customer_info: str
     product: str
     amount: int
     price: int
+    ordered: str

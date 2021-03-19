@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from orders.menus import Menu
 from orders.VO.order import Order
 
@@ -13,5 +15,6 @@ class Customer:
             customer_info=self.name,
             product=coffee.name,
             amount=amount,
-            price=coffee.price
+            price=coffee.price,
+            ordered=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )

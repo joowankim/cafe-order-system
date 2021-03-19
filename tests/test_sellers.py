@@ -1,3 +1,4 @@
+from datetime import datetime
 from unittest import TestCase
 
 from orders.VO.coffee import Coffee
@@ -29,7 +30,8 @@ class TestSeller(TestCase):
             customer_info=customer.name,
             product=coffee.name,
             amount=1,
-            price=3000
+            price=3000,
+            ordered=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
 
         expected = Receipt(
