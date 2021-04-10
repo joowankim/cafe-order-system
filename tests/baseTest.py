@@ -1,12 +1,9 @@
-from collections import namedtuple
 from unittest import TestCase
 
 from orders.coffee import Coffee
 from orders.coffeeRepository import CoffeeRepository
 from orders.menu import Menu
-
-
-Stock = namedtuple(typename='Stock', field_names=['id', 'count'])
+from orders.orderService import Stock
 
 
 class BaseTest(TestCase):

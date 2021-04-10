@@ -1,4 +1,4 @@
-from tests.baseTest import BaseTest, Stock
+from tests.baseTest import BaseTest
 
 
 class TestMenu(BaseTest):

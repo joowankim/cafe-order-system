@@ -1,5 +1,6 @@
 from orders.coffeeRepository import NegativeIntegerError
-from tests.baseTest import BaseTest, Stock
+from orders.orderService import Stock
+from tests.baseTest import BaseTest
 
 
 class TestCoffeeRepository(BaseTest):
