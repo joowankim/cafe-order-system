@@ -1,8 +1,10 @@
 from orders.bucket import Bucket
 from orders.bucketRepository import BucketRepository
 from orders.menu import DoesNotExistItemError
+from orders.order import Order
+from orders.orderRepository import OrderRepository
 from tests.baseTest import BaseTest
-from orders.orderService import OrderService, ExceedOnHandError, Stock
+from orders.orderService import OrderService, ExceedOnHandError, Choice
 
 
 class TestOrderService(BaseTest):
@@ -11,12 +13,13 @@ class TestOrderService(BaseTest):
     def setUp(self):
         super().setUp()
         bucket = Bucket()
-        bucket.put(Stock(self.latte.id, 1))
+        bucket.put(Choice(self.latte.id, 1))
 
         self.bucket_repo = BucketRepository()
         self.bucket_repo.update_bucket(self.CUSTOMER_ID, bucket)
+        self.order_repo = OrderRepository()
 
-        self.order_service = OrderService(self.coffee_repo, self.bucket_repo, self.menu)
+        self.order_service = OrderService(self.coffee_repo, self.bucket_repo, self.order_repo, self.menu)
 
     def test_get_menu(self):
         expected = []
@@ -33,14 +36,14 @@ class TestOrderService(BaseTest):
 
     def test_add_items_to_bucket(self):
         items = [
-            Stock(self.latte.id, 1)
+            Choice(self.latte.id, 1)
         ]
         with self.assertRaises(ExceedOnHandError):
             self.order_service.add_items_to_bucket(self.CUSTOMER_ID, items)
 
         items = [
-            Stock(self.americano.id, 1),
-            Stock(self.espresso.id, 1)
+            Choice(self.americano.id, 1),
+            Choice(self.espresso.id, 1)
         ]
         self.order_service.add_items_to_bucket(self.CUSTOMER_ID, items)
 
@@ -52,6 +55,10 @@ class TestOrderService(BaseTest):
         self.assertEqual(expected, self.bucket_repo.get_bucket(self.CUSTOMER_ID).items)
 
         with self.assertRaises(DoesNotExistItemError):
-            self.order_service.add_items_to_bucket(self.CUSTOMER_ID, [Stock(0, 12)])
+            self.order_service.add_items_to_bucket(self.CUSTOMER_ID, [Choice(0, 12)])
 
-
+    def test_create_order(self):
+        bucket = self.bucket_repo.get_bucket(self.CUSTOMER_ID)
+        order = self.order_service.create_order(self.CUSTOMER_ID, bucket)
+        self.assertEqual(self.CUSTOMER_ID, order.customer_id)
+        self.assertEqual(bucket, order.bucket)

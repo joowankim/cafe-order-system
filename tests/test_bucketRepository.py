@@ -1,6 +1,6 @@
 from orders.bucket import Bucket
 from orders.bucketRepository import BucketRepository
-from orders.orderService import Stock
+from orders.orderService import Choice
 from tests.baseTest import BaseTest
 
 
@@ -9,7 +9,7 @@ class TestBucketRepository(BaseTest):
 
     def test_put(self):
         bucket = Bucket()
-        bucket.put(Stock(self.latte.id, 1))
+        bucket.put(Choice(self.latte.id, 1))
 
         bucket_repo = BucketRepository()
         bucket_repo.update_bucket(self.CUSTOMER_ID, bucket)
@@ -20,7 +20,7 @@ class TestBucketRepository(BaseTest):
 
     def test_get_bucket(self):
         bucket = Bucket()
-        bucket.put(Stock(self.latte.id, 1))
+        bucket.put(Choice(self.latte.id, 1))
 
         bucket_repo = BucketRepository()
         bucket_repo.update_bucket(self.CUSTOMER_ID, bucket)

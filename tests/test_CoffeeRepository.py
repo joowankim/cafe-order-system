@@ -1,5 +1,5 @@
 from orders.coffeeRepository import NegativeIntegerError
-from orders.orderService import Stock
+from orders.orderService import Choice
 from tests.baseTest import BaseTest
 
 
@@ -13,9 +13,9 @@ class TestCoffeeRepository(BaseTest):
         # check inventory after first putting items
         self.assertEqual(expected, self.coffee_repo.inventory)
 
-        stock = Stock(self.latte.id, 3)
-        self.coffee_repo.put(stock)
-        expected[stock.id] += stock.count
+        choice = Choice(self.latte.id, 3)
+        self.coffee_repo.put(choice)
+        expected[choice.id] += choice.count
 
         # check inventory after second putting latte 3 cups
         self.assertEqual(expected, self.coffee_repo.inventory)
@@ -23,4 +23,4 @@ class TestCoffeeRepository(BaseTest):
 
         # check negative count
         with self.assertRaises(NegativeIntegerError):
-            self.coffee_repo.put(Stock(self.latte.id, -2))
+            self.coffee_repo.put(Choice(self.latte.id, -2))

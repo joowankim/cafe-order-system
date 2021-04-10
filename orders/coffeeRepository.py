@@ -10,10 +10,10 @@ class CoffeeRepository:
     def __init__(self):
         self.inventory = defaultdict(int)
 
-    def put(self, stock):
-        if stock.count < 0:
+    def put(self, choice):
+        if choice.count < 0:
             raise NegativeIntegerError("coffee")
-        changes = {stock.id: self.inventory.get(stock.id, 0) + stock.count}
+        changes = {choice.id: self.inventory.get(choice.id, 0) + choice.count}
         self.inventory.update(changes)
 
     def get_inventory(self):

@@ -3,7 +3,7 @@ from unittest import TestCase
 from orders.coffee import Coffee
 from orders.coffeeRepository import CoffeeRepository
 from orders.menu import Menu
-from orders.orderService import Stock
+from orders.orderService import Choice
 
 
 class BaseTest(TestCase):
@@ -30,5 +30,5 @@ class BaseTest(TestCase):
 
         for coffee in self.coffee_list:
             cnt = 1
-            stock = Stock(coffee.id, cnt)
-            self.coffee_repo.put(stock)
+            choice = Choice(coffee.id, cnt)
+            self.coffee_repo.put(choice)

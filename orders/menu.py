@@ -29,3 +29,9 @@ class Menu:
             return self.product_list[item_id]['name']
         except KeyError:
             raise DoesNotExistItemError(item_id)
+
+    def get_item(self, item_id):
+        try:
+            return self.product_list[item_id]
+        except KeyError:
+            raise DoesNotExistItemError(item_id)
