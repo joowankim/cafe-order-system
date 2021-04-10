@@ -1,3 +1,4 @@
+from orders.coffeeRepository import NegativeIntegerError
 from tests.baseTest import BaseTest, Stock
 
 
@@ -18,3 +19,7 @@ class TestCoffeeRepository(BaseTest):
         # check inventory after second putting latte 3 cups
         self.assertEqual(expected, self.coffee_repo.inventory)
         self.assertNotEqual({}, self.coffee_repo.inventory)
+
+        # check negative count
+        with self.assertRaises(NegativeIntegerError):
+            self.coffee_repo.put(Stock(self.latte.id, -2))

@@ -8,6 +8,11 @@ class OrderService:
         self.menu = menu
 
     def get_menu(self):
+        """
+        get all of items list in menu
+
+        :return: list of products and amount
+        """
         inventory = self.repo.get_inventory()
         items = self.menu.get_items()
         return [{'id': item.id,
